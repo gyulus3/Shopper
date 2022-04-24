@@ -9,11 +9,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import hu.bme.aut.shopper.database.AppDatabase
 import hu.bme.aut.shopper.database.ShoppingListItemDAO
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object PersistenceModule {
     @Provides
+    @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase = Room.databaseBuilder(
         context,
         AppDatabase::class.java,
@@ -21,6 +23,7 @@ object PersistenceModule {
     ).build()
 
     @Provides
+    @Singleton
     fun provideShoppingListItemDao(appDatabase: AppDatabase): ShoppingListItemDAO {
         return appDatabase.shoppingListItemDAO()
     }

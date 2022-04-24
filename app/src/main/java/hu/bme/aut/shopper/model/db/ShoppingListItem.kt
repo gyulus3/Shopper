@@ -6,6 +6,7 @@ import java.time.LocalDate
 
 @Entity(tableName = "ShoppingItem")
 data class ShoppingListItem (
+        @PrimaryKey
         var id: Long?,
         var content: String?,
         var description: String?,
