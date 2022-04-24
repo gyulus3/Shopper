@@ -1,7 +1,13 @@
 package hu.bme.aut.shopper.util
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import hu.bme.aut.shopper.model.db.ShoppingListItem
+import org.json.JSONObject
+import java.time.LocalDate
+import java.time.LocalDate.parse
 
 class MoshiConverter {
     private val _moshiBuilder = Moshi
@@ -10,22 +16,30 @@ class MoshiConverter {
         .build()
 
     @TypeConverter
-    fun listToJson(list: List<String>): String = _moshiBuilder
-        .toJson(list)
+    fun fromShoppingListItem(shoppingListItem: ShoppingListItem): String {
+        return JSONObject().apply {
+            put("id", shoppingListItem.id)
+            put("content", shoppingListItem.content)
+            put("completed", shoppingListItem.completed)
+            put("created", shoppingListItem.created)
+            put("description", shoppingListItem.description)
+            put("project_id", shoppingListItem.project_id)
+        }.toString()
+    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @TypeConverter
-    fun jsonToList(json: String): List<String> = _moshiBuilder
-        .fromJson<List<String>>(json)
-        .orEmpty()
-
-    @TypeConverter
-    fun jsonToIntList(json: String): List<Int> = _moshiBuilder
-        .fromJson<List<Int>>(json)
-        .orEmpty()
-
-    @TypeConverter
-    fun intListToJson(list: List<Int>): String = _moshiBuilder
-        .toJson(list)
+    fun toShoppingListItem(shoppingListItem: String): ShoppingListItem {
+        val json = JSONObject(shoppingListItem)
+        return ShoppingListItem(
+            json.getLong("id"),
+            json.getString("content"),
+            json.getString("description"),
+            json.getBoolean("completed"),
+            json.getLong("project_id"),
+            json.getString("created")
+        )
+    }
 }
 
 inline fun <reified T> Moshi.fromJson(json: String) = this.adapter(T::class.java).fromJson(json)
