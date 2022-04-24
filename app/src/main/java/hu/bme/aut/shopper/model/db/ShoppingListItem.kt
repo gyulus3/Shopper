@@ -3,6 +3,7 @@ package hu.bme.aut.shopper.model.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity(tableName = "ShoppingItem")
 data class ShoppingListItem (
@@ -12,5 +13,5 @@ data class ShoppingListItem (
         var description: String?,
         var completed: Boolean,
         var project_id: Long?,
-        var created: LocalDate?,
+        var created: String?,
 )
