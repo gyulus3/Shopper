@@ -6,21 +6,21 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ShoppingListAPI {
-    @POST("/rest/v1/tasks")
+    @POST("/tasks")
     fun createNewItem(@Body shoppingListItem: CreateListItem): Call<ShoppingListResult>
 
-    @GET("/rest/v1/tasks")
+    @GET("/tasks")
     fun getItems(): Call<ShoppingListResult>
 
-    @GET("/rest/v1/tasks/{id}")
+    @GET("/tasks/{id}")
     fun getItemById(@Path("id") itemId: Long): Call<ShoppingListResult>
 
-    @PUT("/rest/v1/tasks/{id}")
+    @PUT("/tasks/{id}")
     fun updateItem(@Path("id") itemId: Long): Call<ShoppingListResult>
 
-    @POST("/rest/v1/tasks/{id}/close")
+    @POST("/tasks/{id}/close")
     fun approveItem(@Path("id") itemId: Long): Call<ShoppingListResult>
 
-    @DELETE("/rest/v1/tasks/{id}")
+    @DELETE("/tasks/{id}")
     fun deleteItem(@Path("id") itemId: Long): Call<ShoppingListResult>
 }
