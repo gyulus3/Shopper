@@ -16,9 +16,9 @@ interface ShoppingListItemDAO {
     @Insert
     fun insert(shoppingListItem: ShoppingListItem)
     @Update
-    fun update(shoppingListItem: ShoppingListItem)
+    fun update(shoppingListItem: ShoppingListItem): Void
     @Query("UPDATE shoppingItem SET completed = 'true' WHERE id = :id")
-    fun setItemApproved(id: Long): LiveData<ShoppingListItem>
+    fun setItemApproved(id: Long): Void
     @Delete
     fun delete(shoppingListItem: ShoppingListItem)
 
