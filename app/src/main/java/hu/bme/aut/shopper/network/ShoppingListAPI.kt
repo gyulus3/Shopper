@@ -9,7 +9,7 @@ interface ShoppingListAPI {
     @POST("/rest/v1/tasks")
     fun createNewItem(@Body shoppingListItem: CreateListItem): Call<ShoppingListResult>
 
-    @GET("rest/v1/tasks")
+    @GET("/rest/v1/tasks")
     fun getItems(): Call<ShoppingListResult>
 
     @GET("/rest/v1/tasks/{id}")
