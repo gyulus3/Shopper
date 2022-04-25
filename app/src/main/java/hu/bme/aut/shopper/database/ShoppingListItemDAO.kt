@@ -12,7 +12,6 @@ interface ShoppingListItemDAO {
     fun getApprovedItems(): LiveData<List<ShoppingListItem>>
     @Query("SELECT * FROM shoppingItem WHERE id = :id")
     fun getById(id: Long): LiveData<ShoppingListItem>
-
     @Insert
     fun insert(shoppingListItem: ShoppingListItem)
     @Update
@@ -21,5 +20,4 @@ interface ShoppingListItemDAO {
     fun setItemApproved(id: Long): Void
     @Delete
     fun delete(shoppingListItem: ShoppingListItem)
-
 }
