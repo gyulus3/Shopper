@@ -5,18 +5,16 @@ import hu.bme.aut.shopper.model.db.ShoppingListItem
 import java.time.LocalDate
 
 @JsonClass(generateAdapter = true)
-data class ShoppingListResult(
+data class CompletedListItem(
     val id: Long,
     val content: String,
-    val description: String? = "",
-    val completed: Boolean,
-    val created: String,
+    val completed_date: String,
 )
 
-fun ShoppingListResult.toListItem() = ShoppingListItem(
+fun CompletedListItem.toListItem() = ShoppingListItem(
     id = id,
     content = content,
-    description = description,
-    completed = completed,
-    created = created
+    description = "",
+    completed = true,
+    created = completed_date
 )
