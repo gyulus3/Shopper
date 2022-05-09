@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "331968867317",
+    "project_id": "shopper-b543c",
+    "storage_bucket": "shopper-b543c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331968867317:android:8f69ed30d06bc5e80b0ebc",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.shopper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331968867317-oqqog1oeplvtpnu3c3vhlub2mdnj6s2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv8reIi3YD48czfGemh_ASv2N2ZCjaXV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331968867317-oqqog1oeplvtpnu3c3vhlub2mdnj6s2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
