@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hu.bme.aut.shopper.model.network.CreateListItem
 import hu.bme.aut.shopper.repository.ShoppingListItemRetrofitRepository
@@ -15,7 +16,7 @@ class UpdateViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val shoppingListItemRetrofitRepository: ShoppingListItemRetrofitRepository
 ): ViewModel() {
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private val _content = savedStateHandle.get<String>("content")
     private val _description = savedStateHandle.get<String>("description")
     private val _id = savedStateHandle.get<Long>("id")
