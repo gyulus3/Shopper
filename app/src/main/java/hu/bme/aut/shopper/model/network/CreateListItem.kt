@@ -4,6 +4,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CreateListItem(
-    var content: String,
-    var description: String?,
+    val content: String,
+    val description: String? = "",
 )

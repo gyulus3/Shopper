@@ -1,0 +1,212 @@
+swagger: "2.0"
+info:
+  description: "Todoist API documentation as used of shopping list management API. Shopping list items are stored and managed as Todo items with Todoist API."
+  version: "1.0.0"
+  title: "SHOPPER documentation"
+  termsOfService: "https://api.todoist.com/rest/v1"
+host: "api.todoist.com"
+basePath: "/rest/v1"
+schemes:
+- "https"
+paths:
+  /tasks:
+    get:
+      tags:
+      - "Tasks"
+      summary: "Get active tasks."
+      operationId: "getTasks"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Successful response."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Task"
+    post:
+      tags:
+      - "Tasks"
+      summary: "Create a new task"
+      description: ""
+      operationId: "createTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Creates a new task and returns it as a JSON object."
+        required: true
+        schema:
+          $ref: "#/definitions/CreateTask"
+      responses:
+        "200":
+          description: "Successful response."
+          schema:
+            $ref: "#/definitions/Task"
+            
+  /tasks/{id}:   
+    get:
+      tags:
+      - "Tasks"
+      summary: "Get an active task."
+      operationId: "getTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the task to retrieve
+          type: integer
+      responses:
+        "200":
+          description: "Successful response."
+          schema:
+              $ref: "#/definitions/Task"
+    put:
+      tags:
+      - "Tasks"
+      summary: "Update a task."
+      operationId: "updateTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the task to update
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Update a new task and returns it as a JSON object."
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateTask"
+      responses:
+        "204":
+          description: "Successful response."
+    delete:
+      tags:
+      - "Tasks"
+      summary: "Delete a task."
+      operationId: "deleteTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the task to delete
+          type: integer
+      responses:
+        "204":
+          description: "Successful response."
+  /tasks/{id}/close:   
+    get:
+      tags:
+      - "Tasks"
+      summary: "Close an active task."
+      operationId: "closeTask"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the task to close
+          type: integer
+      responses:
+        "204":
+          description: "Successful response."
+definitions:
+  Task:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      project_id:
+        type: "integer"
+        format: "int64"
+      section_id:
+        type: "integer"
+        format: "int64"
+      parent_id:
+        type: "integer"
+        format: "int64"
+      content:
+        type: "string"
+      description:
+        type: "string"
+      comment_count:
+        type: "integer"
+        format: "int64"
+      assignee:
+        type: "integer"
+        format: "int64"
+      assigner:
+        type: "integer"
+        format: "int64"
+      order:
+        type: "integer"
+        format: "int64"
+      priority:
+        type: "integer"
+        format: "int64"
+      completed:
+        type: "boolean"
+      url:
+        type: "string"
+  CreateTask:
+    type: "object"
+    required:
+      - "content"
+    properties:
+      project_id:
+        type: "integer"
+        format: "int64"
+      section_id:
+        type: "integer"
+        format: "int64"
+      parent_id:
+        type: "integer"
+        format: "int64"
+      content:
+        type: "string"
+      description:
+        type: "string"
+      assignee:
+        type: "integer"
+        format: "int64"
+      order:
+        type: "integer"
+        format: "int64"
+      priority:
+        type: "integer"
+        format: "int64"
+  UpdateTask:
+    type: "object"
+    properties:
+      content:
+        type: "string"
+      description:
+        type: "string"
+      assignee:
+        type: "integer"
+        format: "int64"
+      priority:
+        type: "integer"
+        format: "int64"
