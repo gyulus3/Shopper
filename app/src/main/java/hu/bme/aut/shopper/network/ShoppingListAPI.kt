@@ -1,26 +1,31 @@
 package hu.bme.aut.shopper.network
 
+import hu.bme.aut.shopper.model.network.CompletedList
 import hu.bme.aut.shopper.model.network.CreateListItem
 import hu.bme.aut.shopper.model.network.ShoppingListResult
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ShoppingListAPI {
-    @POST("/rest/v1/tasks")
-    fun createNewItem(@Body shoppingListItem: CreateListItem): Call<ShoppingListResult>
+    @POST("tasks")
+    suspend fun createNewItem(@Body shoppingListItem: CreateListItem, @Query("project_id") projectId: String, @Header("Authorization") token: String): Response<Unit>
 
-    @GET("rest/v1/tasks")
-    fun getItems(): Call<ShoppingListResult>
+    @GET("tasks")
+    suspend fun getItems(@Query("project_id") projectId: String, @Header("Authorization") token: String): List<ShoppingListResult>
 
-    @GET("/rest/v1/tasks/{id}")
-    fun getItemById(@Path("id") itemId: Long): Call<ShoppingListResult>
+    @GET("tasks/{id}")
+    suspend fun getItemById(@Path("id") itemId: Long, @Query("project_id") projectId: String, @Header("Authorization") token: String): ShoppingListResult
 
-    @PUT("/rest/v1/tasks/{id}")
-    fun updateItem(@Path("id") itemId: Long): Call<ShoppingListResult>
+    @POST("tasks/{id}")
+    suspend fun updateItem(@Path("id") itemId: Long, @Body shoppingListItem: CreateListItem, @Query("project_id") projectId: String, @Header("Authorization") token: String): Response<Unit>
 
-    @POST("/rest/v1/tasks/{id}/close")
-    fun approveItem(@Path("id") itemId: Long): Call<ShoppingListResult>
+    @POST("tasks/{id}/close")
+    suspend fun approveItem(@Path("id") itemId: Long, @Query("project_id") projectId: String, @Header("Authorization") token: String): Response<Unit>
 
-    @DELETE("/rest/v1/tasks/{id}")
-    fun deleteItem(@Path("id") itemId: Long): Call<ShoppingListResult>
+    @DELETE("tasks/{id}")
+    suspend fun deleteItem(@Path("id") itemId: Long, @Query("project_id") projectId: String, @Header("Authorization") token: String): Response<Unit>
+
+    @GET("https://api.todoist.com/sync/v8/completed/get_all")
+    suspend fun getAllCompleted(@Query("project_id") projectId: String, @Header("Authorization") token: String): CompletedList
 }
