@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Shopper</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="newButton">New</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="created">Created:</string>
+    <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="title">Title</string>
+    <string name="show_approved">Show approved</string>
+    <string name="update">Update</string>
+
 </resources>

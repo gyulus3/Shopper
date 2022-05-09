@@ -2,16 +2,19 @@ package hu.bme.aut.shopper.model.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.LocalDate
-import java.time.LocalDateTime
+import hu.bme.aut.shopper.model.network.CreateListItem
 
 @Entity(tableName = "ShoppingItem")
 data class ShoppingListItem (
         @PrimaryKey
         var id: Long?,
-        var content: String?,
-        var description: String?,
+        var content: String,
+        val description: String? = "",
         var completed: Boolean,
-        var project_id: Long?,
-        var created: String?,
+        var created: String,
+)
+
+fun ShoppingListItem.toCreateListItem() = CreateListItem(
+        content = content,
+        description = description,
 )

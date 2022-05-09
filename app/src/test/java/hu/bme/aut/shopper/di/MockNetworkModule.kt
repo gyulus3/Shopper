@@ -23,7 +23,7 @@ import javax.inject.Singleton
     components = [SingletonComponent::class],
     replaces = [NetworkModule::class]
 )
-object NetworkModuleMock {
+object MockNetworkModule {
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
@@ -55,7 +55,7 @@ object NetworkModuleMock {
     ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(mockWebServer.url("https://api.todoist.com/rest/v1"))
+            .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(converterFactory)
             .build()
     }

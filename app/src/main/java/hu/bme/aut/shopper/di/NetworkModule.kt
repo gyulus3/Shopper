@@ -33,7 +33,7 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(" https://api.todoist.com/rest/v1")
+            .baseUrl(" https://api.todoist.com/rest/v1/")
             .addConverterFactory(converterFactory)
             .build()
     }
